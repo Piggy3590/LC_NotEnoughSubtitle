@@ -1,5 +1,5 @@
 # Not Enough Subtitle
-(LC Mod) Add Korean subtitles to each line from the ship's speakers (not english lines here)
+(LC Mod) Add Korean subtitles to each line from the ship's speakers (no english lines here)
 some code are from JustJelly's Subtitle mod
 
 
