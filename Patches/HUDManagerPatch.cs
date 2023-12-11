@@ -37,15 +37,5 @@ namespace NotEnoughSubtitle.Patches
 
             RsubtitleGUItext = textComponent;
         }
-
-        [HarmonyPostfix]
-        [HarmonyPatch("Update")]
-        private static void Update_Postfix()
-        {
-            if (RsubtitleGUItext == textComponent)
-            {
-                RsubtitleGUItext.text = "Testing";
-            }
-        }
     }
 }
