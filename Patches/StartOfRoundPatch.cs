@@ -36,9 +36,9 @@ namespace NotEnoughSubtitle.Patches
 
             if (introTimer > 7f && introTimer < 7.3f) { HUDManagerPatch.RsubtitleGUItext.text = "<color=#5CD1E5>컴퓨터 파일럿:</color> " + "당신의 첫 근무일에 오신 것을 환영합니다."; }
             if (introTimer > 10.1f && introTimer < 10.4f) { HUDManagerPatch.RsubtitleGUItext.text = "<color=#5CD1E5>컴퓨터 파일럿:</color> " + "이곳은 계약 기간 동안 여러분의 의식주가 이루어지는,"; }
-            if (introTimer > 12.5f && introTimer < 13f) { HUDManagerPatch.RsubtitleGUItext.text = "<color=#5CD1E5>컴퓨터 파일럿:</color> " + "여러분만의 자동 조종 함선입니다."; }
+            if (introTimer > 12.5f && introTimer < 13f) { HUDManagerPatch.RsubtitleGUItext.text = "<color=#5CD1E5>컴퓨터 파일럿:</color> " + "당신만의 자동 조종 함선입니다."; }
             if (introTimer > 15.3f && introTimer < 15.5f) { HUDManagerPatch.RsubtitleGUItext.text = "(알아들을 수 없는 말)"; }
-            if (introTimer > 20 && introTimer < 20.3) { HUDManagerPatch.RsubtitleGUItext.text = "<color=#5CD1E5>컴퓨터 파일럿:</color> " + "집처럼 편안하게 지내시길 바랍니다."; }
+            if (introTimer > 20 && introTimer < 20.3) { HUDManagerPatch.RsubtitleGUItext.text = "<color=#5CD1E5>컴퓨터 파일럿:</color> " + "이곳을 집처럼 여기시길 바랍니다."; }
             if (introTimer > 21.7 && introTimer < 22) { HUDManagerPatch.RsubtitleGUItext.text = "<color=#5CD1E5>컴퓨터 파일럿:</color> " + "탑승 절차를 완료하셨다면 지침서를 확인하신 후" + "\n" + "함선의 컴퓨터 단말기에 로그인하시기 바랍니다."; }
             if (introTimer > 28.3 && introTimer < 29) { HUDManagerPatch.RsubtitleGUItext.text = "<color=#5CD1E5>컴퓨터 파일럿:</color> " + "우리는 여러분이 회사의 큰 자산이 될 것이라고 믿습니다."; }
             if (introTimer > 31 && introTimer < 32) { HUDManagerPatch.RsubtitleGUItext.text = "<color=#5CD1E5>컴퓨터 파일럿:</color> " + "회사의 큰 큰 자산 회사의 큰 큰 자산..."; }
@@ -50,7 +50,7 @@ namespace NotEnoughSubtitle.Patches
             if (firedTimer > 8f && firedTimer < 9f) { HUDManagerPatch.RsubtitleGUItext.text = ""; }
 
             if (zeroDayTimer > 5.25f && zeroDayTimer < 5.5f) { HUDManagerPatch.RsubtitleGUItext.text = "<color=#5CD1E5>컴퓨터 파일럿:</color> " + "즉시 회사 건물로 이동하여 폐철물이나 기타 물건들을 판매하십시오."; }
-            if (zeroDayTimer > 10f && zeroDayTimer < 11f) { HUDManagerPatch.RsubtitleGUItext.text = "<color=#5CD1E5>컴퓨터 파일럿:</color> " + "이익 할당량을 충족시킬 수 있는 시간이 0일 남았습니다."; }
+            if (zeroDayTimer > 10f && zeroDayTimer < 11f) { HUDManagerPatch.RsubtitleGUItext.text = "<color=#5CD1E5>컴퓨터 파일럿:</color> " + "수익 할당량을 충족시킬 수 있는 시간이 0일 남았습니다."; }
             if (zeroDayTimer > 13.4f && zeroDayTimer < 14f) { HUDManagerPatch.RsubtitleGUItext.text = "<color=#5CD1E5>컴퓨터 파일럿:</color> " + "터미널을 사용하여 함선을 회사 건물로 이동시킬 수 있습니다."; }
             if (zeroDayTimer > 17f && zeroDayTimer < 18f) { HUDManagerPatch.RsubtitleGUItext.text = ""; }
         }

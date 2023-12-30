@@ -33,7 +33,7 @@ namespace NotEnoughSubtitle.Patches
 
             textComponent.alignment = TextAlignmentOptions.Center;
             textComponent.font = __instance.controlTipLines[0].font;
-            textComponent.fontSize = 20f;
+            textComponent.fontSize = 16f;
 
             RsubtitleGUItext = textComponent;
         }

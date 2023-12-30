@@ -1,4 +1,5 @@
-﻿using BepInEx.Logging;
+﻿using BepInEx;
+using BepInEx.Logging;
 using DunGen;
 using GameNetcodeStuff;
 using HarmonyLib;
@@ -21,66 +22,114 @@ namespace NotEnoughSubtitle.Patches
     {
         public static float speakTimer = 20;
         public static AudioClip audioClip;
+        private static int speakerNum;
+        private static bool isRareDialogue;
+        private static bool isDialogueRerolled;
+        public static bool canBeHeard;
+
+        [HarmonyPrefix]
         [HarmonyPatch("Update")]
-        private static void Update_Fix()
+        private static void Update_PreFix()
         {
             if (speakTimer < 100) { speakTimer += Time.deltaTime; }
 
-            HUDManagerPatch.RsubtitleGUItext.text = audioClip.name + "/" + speakTimer;
+            if (canBeHeard)
+            {
+                if (speakerNum == 0 && speakTimer > 1f && speakTimer < 2f && !isRareDialogue)
+                { HUDManagerPatch.RsubtitleGUItext.text = "<color=#F15F5F>???:</color> " + "귀하의 노력이 회사를 행복하게 만듭니다.";
+                    Plugin.mls.LogInfo("Played 1!!!!");
+                }
 
-            if (audioClip.name == "Mic1" && speakTimer > 1f && speakTimer < 2f)
-            { HUDManagerPatch.RsubtitleGUItext.text = "<color=#5CD1E5>???:</color> " + "Your work keeps The Company happy."; }
+                if (speakerNum == 1 && speakTimer > 1f && speakTimer < 2f && !isRareDialogue)
+                { HUDManagerPatch.RsubtitleGUItext.text = "<color=#F15F5F>???:</color> " + "우리는 여러분의 헌신을 소중하게 생각합니다.";
+                    Plugin.mls.LogInfo("Played 2!!!!");
+                }
 
-            if (audioClip.name == "Mic2" && speakTimer > 1f && speakTimer < 2f)
-            { HUDManagerPatch.RsubtitleGUItext.text = "<color=#5CD1E5>???:</color> " + "We value your commitment."; }
+                if (speakerNum == 2 && speakTimer > 1f && speakTimer < 2f && !isRareDialogue)
+                { HUDManagerPatch.RsubtitleGUItext.text = "<color=#F15F5F>???:</color> " + "여러분의 수고는 회사에 매우 중요합니다.";
+                    Plugin.mls.LogInfo("Played 3!!!!");
+                }
 
-            if (audioClip.name == "Mic3" && speakTimer > 1f && speakTimer < 2f)
-            { HUDManagerPatch.RsubtitleGUItext.text = "<color=#5CD1E5>???:</color> " + "We need you."; }
-            if (audioClip.name == "Mic3" && speakTimer > 2f && speakTimer < 3f)
-            { HUDManagerPatch.RsubtitleGUItext.text = "<color=#5CD1E5>???:</color> " + "eeeeeeeee"; }
+                if (speakerNum == 3 && speakTimer > 1f && speakTimer < 2f && !isRareDialogue)
+                { HUDManagerPatch.RsubtitleGUItext.text = "<color=#F15F5F>???:</color> " + "여러분의 정직한 업무는 회사의 귀중한 자산입니다.";
+                    Plugin.mls.LogInfo("Played 4!!!!");
+                }
 
-            if (audioClip.name == "Mic4" && speakTimer > 1f && speakTimer < 2f)
-            { HUDManagerPatch.RsubtitleGUItext.text = "<color=#5CD1E5>???:</color> " + "Your handwork is invaluable to the company. "; }
+                if (speakerNum == 4 && speakTimer > 1f && speakTimer < 2f && !isRareDialogue)
+                { HUDManagerPatch.RsubtitleGUItext.text = "<color=#F15F5F>???:</color> " + "여러분은 진정한 전문가입니다.";
+                    Plugin.mls.LogInfo("Played 5!!!!");
+                }
 
-            if (audioClip.name == "Mic6" && speakTimer > 1f && speakTimer < 2f)
-            { HUDManagerPatch.RsubtitleGUItext.text = "<color=#5CD1E5>???:</color> " + "Wa."; }
 
-            if (audioClip.name == "Mic7" && speakTimer > 1f && speakTimer < 2f)
-            { HUDManagerPatch.RsubtitleGUItext.text = "<color=#5CD1E5>???:</color> " + "The Company must stay happy."; }
-            if (audioClip.name == "Mic7" && speakTimer > 2f && speakTimer < 3f)
-            { HUDManagerPatch.RsubtitleGUItext.text = "<color=#5CD1E5>???:</color> " + "eetche compny muast"; }
 
-            if (audioClip.name == "Mic8" && speakTimer > 1f && speakTimer < 2f)
-            { HUDManagerPatch.RsubtitleGUItext.text = "<color=#5CD1E5>???:</color> " + "this wall cannot contain it-"; }
-            if (audioClip.name == "Mic8" && speakTimer > 2f && speakTimer < 3f)
-            { HUDManagerPatch.RsubtitleGUItext.text = "<color=#5CD1E5>???:</color> " + "ccontai n"; }
+                if (speakerNum == 0 && speakTimer > 1f && speakTimer < 2f && isRareDialogue)
+                { HUDManagerPatch.RsubtitleGUItext.text = "<color=#F15F5F>???:</color> " + "와.";
+                    Plugin.mls.LogInfo("Played 1!!!!");
+                }
 
-            if (audioClip.name == "Mic9" && speakTimer > 1f && speakTimer < 2f)
-            { HUDManagerPatch.RsubtitleGUItext.text = "<color=#5CD1E5>???:</color> " + "Your honest work is invaluable to the Company."; }
+                if (speakerNum == 1 && speakTimer > 1f && speakTimer < 2f && isRareDialogue)
+                { HUDManagerPatch.RsubtitleGUItext.text = "<color=#F15F5F>???:</color> " + "이 벽은 그것을 격리할 수 없-";
+                    Plugin.mls.LogInfo("Played 2!!!!");
+                }
+                if (speakerNum == 1 && speakTimer > 5.5f && speakTimer < 6f && isRareDialogue)
+                { HUDManagerPatch.RsubtitleGUItext.text = "<color=#F15F5F>???:</color> " + "격ㄹ ㅣ"; }
 
-            if (audioClip.name == "Mic10" && speakTimer > 1f && speakTimer < 2f)
-            { HUDManagerPatch.RsubtitleGUItext.text = "<color=#5CD1E5>???:</color> " + "You are true professionals."; }
+                if (speakerNum == 2 && speakTimer > 1f && speakTimer < 2f && isRareDialogue)
+                {
+                    HUDManagerPatch.RsubtitleGUItext.text = "<color=#F15F5F>???:</color> " + "와.";
+                    Plugin.mls.LogInfo("Played 3!!!!");
+                }
 
-            if (audioClip.name == "Mic11" && speakTimer > 1f && speakTimer < 2f)
-            { HUDManagerPatch.RsubtitleGUItext.text = "<color=#5CD1E5>???:</color> " + "Keep our investors happy."; }
+                if (speakerNum == 3 && speakTimer > 1f && speakTimer < 2f && isRareDialogue)
+                { HUDManagerPatch.RsubtitleGUItext.text = "<color=#F15F5F>???:</color> " + "회사는 항상 행복해야 합니다.";
+                    Plugin.mls.LogInfo("Played 4!!!!");
+                }
+                if (speakerNum == 3 && speakTimer > 2f && speakTimer < 3f && isRareDialogue)
+                { HUDManagerPatch.RsubtitleGUItext.text = "<color=#F15F5F>???:</color> " + "호ㅣ사는 항ㅅㅏㅇ"; }
 
-            if (speakTimer > 4f && speakTimer < 6f)
-            { HUDManagerPatch.RsubtitleGUItext.text = ""; }
+
+                if (speakerNum == 4 && speakTimer > 1f && speakTimer < 2f && isRareDialogue)
+                { HUDManagerPatch.RsubtitleGUItext.text = "<color=#F15F5F>???:</color> " + "우리는 당신이 필요합니다.";
+                    Plugin.mls.LogInfo("Played 5!!!!");
+                }
+                if (speakerNum == 5 && speakTimer > 2f && speakTimer < 3f && isRareDialogue)
+                { HUDManagerPatch.RsubtitleGUItext.text = "<color=#F15F5F>???:</color> " + "이이이이이이-"; }
+
+
+                if (speakerNum == 6 && speakTimer > 1f && speakTimer < 2f && isRareDialogue)
+                { HUDManagerPatch.RsubtitleGUItext.text = "<color=#F15F5F>???:</color> " + "계속해서 우리 투자자들의 만족도를 유지하세요.";
+                }
+            }
+
+            if (speakTimer > 6f && speakTimer < 8f)
+            { HUDManagerPatch.RsubtitleGUItext.text = "";
+                isDialogueRerolled = false;
+            }
         }
 
         [HarmonyPrefix]
+        [HarmonyPatch("MicrophoneSpeak")]
         public static bool MicrophoneSpeak_Prefix(ref AudioSource ___speakerAudio, ref AudioClip[] ___rareMicrophoneAudios, ref AudioClip[] ___microphoneAudios, ref System.Random ___CompanyLevelRandom)
         {
-            speakTimer = 0f;
-            if (___CompanyLevelRandom.NextDouble() < 0.029999999329447746)
+            speakTimer = 1f;
+            if (!isDialogueRerolled)
             {
-                audioClip = ___rareMicrophoneAudios[___CompanyLevelRandom.Next(0, ___rareMicrophoneAudios.Length)];
+                isDialogueRerolled = true;
+                if (___CompanyLevelRandom.NextDouble() < 0.029999999329447746)
+                {
+                    speakerNum = ___CompanyLevelRandom.Next(0, ___rareMicrophoneAudios.Length);
+                    audioClip = ___rareMicrophoneAudios[speakerNum];
+                    isRareDialogue = true;
+                }
+                else
+                {
+                    speakerNum = ___CompanyLevelRandom.Next(0, ___microphoneAudios.Length);
+                    audioClip = ___microphoneAudios[speakerNum];
+                    isRareDialogue = false;
+                }
+                Plugin.mls.LogInfo("TESBNFHIUJDBNFIHNSGVSJDNV: " + speakerNum);
+                ___speakerAudio.PlayOneShot(audioClip, 1f);
             }
-            else
-            {
-                audioClip = ___microphoneAudios[___CompanyLevelRandom.Next(0, ___microphoneAudios.Length)];
-            }
-            ___speakerAudio.PlayOneShot(audioClip, 1f);
             return false;
         }
     }
