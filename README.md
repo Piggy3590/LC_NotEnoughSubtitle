@@ -1,6 +1,9 @@
-# Not Enough Subtitle
-(LC Mod) Add Korean subtitles to each line from the ship's speakers (no english lines here)
-some code are from JustJelly's Subtitle mod
+# NotEnoughSubtitleKOR
+(Korean) Add subtitles to each line from the ship's speakers
 
+# 1.0.1
+- Correct mistranslation.
 
-If there are any other problems such as sync, typo, bugs, etc..., please report them to the issue!
+# 1.0.2
+- Added dialogue to the counter speakers in the company building.
+- Adjusted the font size.
